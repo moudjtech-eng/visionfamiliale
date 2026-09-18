@@ -1,0 +1,1092 @@
+/* ============================================================
+   1. RESET & BASE
+   ============================================================ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #222;
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+
+input, textarea, select, button {
+  font-family: inherit;
+}
+
+a { color: inherit; }
+
+
+/* ============================================================
+   2. BOUTONS GÉNÉRIQUES
+   ============================================================ */
+.btn {
+  display: inline-block;
+  padding: 10px 16px;
+  background: #4f8cff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background .2s, transform .15s;
+}
+.btn:hover { background: #3a76e0; }
+.btn:disabled { background: #ccc; cursor: not-allowed; }
+
+.btn-ghost {
+  display: inline-block;
+  padding: 8px 14px;
+  background: transparent;
+  color: #444;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-ghost:hover { background: #f5f5f5; }
+
+.btn-lg {
+  padding: 14px 28px;
+  font-size: 16px;
+  border-radius: 12px;
+}
+
+.btn-mini {
+  font-size: 13px;
+  color: #4f8cff;
+  font-weight: 600;
+}
+
+.btn-delete {
+  background: #ffe3e3;
+  color: #d33;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn-delete:hover { background: #ffcaca; }
+
+.hidden { display: none; }
+
+
+/* ============================================================
+   3. HEADER PUBLIC
+   ============================================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, .95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #eee;
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #1a1a1a;
+  font-weight: 800;
+  font-size: 18px;
+}
+.brand-logo { height: 36px; width: auto; }
+.brand-name-fallback { font-size: 22px; }
+.brand-name { font-weight: 800; }
+
+.header-nav {
+  display: flex;
+  gap: 24px;
+  flex: 1;
+}
+.header-nav a {
+  color: #555;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color .2s;
+}
+.header-nav a:hover { color: #6c5ce7; }
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+
+/* ============================================================
+   4. LANDING PAGE — HERO
+   ============================================================ */
+.landing-page { background: #fff; color: #1a1a1a; }
+
+.hero {
+  padding: 80px 20px 100px;
+  background: linear-gradient(135deg, #f5f3ff 0%, #eef4ff 100%);
+  text-align: center;
+}
+.hero-inner { max-width: 800px; margin: 0 auto; }
+
+.hero h1 {
+  font-size: 52px;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  color: #111;
+}
+.hero h1 .accent {
+  background: linear-gradient(135deg, #6c5ce7, #4f8cff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero-sub {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero-cta {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.hero-note { font-size: 13px; color: #888; }
+
+
+/* ============================================================
+   5. LANDING — SECTIONS GÉNÉRIQUES
+   ============================================================ */
+.section { padding: 80px 20px; }
+.section-alt { background: #fafbff; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+
+.section-title {
+  font-size: 36px;
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: -.8px;
+  margin-bottom: 12px;
+}
+.section-sub {
+  text-align: center;
+  color: #777;
+  font-size: 16px;
+  margin-bottom: 50px;
+}
+
+
+/* ============================================================
+   6. LANDING — SERVICES
+   ============================================================ */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  padding: 26px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 16px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(108, 92, 231, .12);
+  border-color: #ddd6fe;
+}
+.service-icon { font-size: 40px; margin-bottom: 14px; }
+.service-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #111; }
+.service-card p {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+  flex: 1;
+  margin-bottom: 16px;
+}
+.service-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 14px;
+  border-top: 1px solid #f0f0f5;
+}
+.price { font-weight: 700; color: #6c5ce7; font-size: 16px; }
+
+
+/* ============================================================
+   7. LANDING — ÉTAPES
+   ============================================================ */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+}
+.step { text-align: center; padding: 20px; }
+.step-num {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6c5ce7, #4f8cff);
+  color: #fff;
+  font-size: 24px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+}
+.step h3 { font-size: 17px; margin-bottom: 8px; color: #111; }
+.step p { color: #666; font-size: 14px; line-height: 1.5; }
+
+
+/* ============================================================
+   8. LANDING — POURQUOI NOUS
+   ============================================================ */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+.why-item { text-align: center; padding: 24px; }
+.why-icon { font-size: 36px; margin-bottom: 12px; }
+.why-item h3 { font-size: 17px; margin-bottom: 8px; color: #111; }
+.why-item p { color: #666; font-size: 14px; line-height: 1.5; }
+
+
+/* ============================================================
+   9. LANDING — CTA FINAL
+   ============================================================ */
+.cta-final {
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #6c5ce7, #4f8cff);
+  color: #fff;
+  text-align: center;
+}
+.cta-final h2 {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 14px;
+  letter-spacing: -.6px;
+}
+.cta-final p {
+  color: rgba(255,255,255,.9);
+  font-size: 16px;
+  margin-bottom: 28px;
+}
+.cta-final .btn { background: #fff; color: #6c5ce7; }
+.cta-final .btn:hover { background: #f0f0ff; }
+
+
+/* ============================================================
+   10. FOOTER
+   ============================================================ */
+.site-footer {
+  background: #0f1729;
+  color: #cbd5e1;
+  padding: 60px 20px 20px;
+}
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+.footer-col h4 {
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+.footer-col ul { list-style: none; padding: 0; }
+.footer-col li { margin-bottom: 10px; }
+.footer-col a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color .2s;
+}
+.footer-col a:hover { color: #a29bfe; }
+
+.brand-footer { color: #fff; margin-bottom: 14px; }
+.brand-footer .brand-name { color: #fff; }
+.footer-text { font-size: 14px; line-height: 1.6; color: #94a3b8; }
+
+.footer-bottom {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-top: 24px;
+  border-top: 1px solid #1e293b;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 13px;
+  color: #94a3b8;
+}
+.footer-made { color: #a29bfe; }
+
+/* Ancien footer simple (fallback pour pages sans .site-footer) */
+footer:not(.site-footer) {
+  text-align: center;
+  padding: 20px;
+  color: #999;
+  font-size: 13px;
+}
+
+
+/* ============================================================
+   11. AUTH (login / register / verify)
+   ============================================================ */
+.auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #6c5ce7, #4f8cff);
+}
+.auth-card {
+  background: #fff;
+  padding: 40px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.2);
+}
+.auth-card h1 { margin-bottom: 8px; }
+.auth-card .muted { color: #888; font-size: 14px; margin-bottom: 20px; }
+.auth-card form { display: flex; flex-direction: column; gap: 12px; }
+.auth-card input {
+  padding: 12px 14px;
+  border: 2px solid #eee;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+}
+.auth-card input:focus { border-color: #4f8cff; }
+
+.error { color: #e04444; font-size: 13px; min-height: 18px; margin-top: 10px; }
+.switch { text-align: center; font-size: 13px; color: #666; margin-top: 20px; }
+.switch a { color: #4f8cff; font-weight: 600; text-decoration: none; }
+
+
+/* ============================================================
+   12. DASHBOARD
+   ============================================================ */
+.dashboard-page { background: #f5f7fb; min-height: 100vh; }
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  gap: 16px;
+}
+.topbar .back { color: #4f8cff; text-decoration: none; font-weight: 600; }
+.topbar #current-template { color: #666; font-size: 14px; }
+.topbar .brand { text-decoration: none; color: inherit; }
+.topbar .brand strong { font-weight: 800; }
+
+.user-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #555;
+}
+.user-email { font-size: 13px; color: #888; }
+
+.dashboard-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+.dashboard-welcome { margin-bottom: 40px; }
+.dashboard-welcome h1 { font-size: 32px; margin-bottom: 6px; }
+.dashboard-welcome p { color: #666; }
+
+.dashboard-section { margin-bottom: 50px; }
+.dashboard-section-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+/* Grille des types de documents */
+.types-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 18px;
+}
+.type-card {
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.type-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(108, 92, 231, .12);
+  border-color: #ddd6fe;
+}
+.type-icon { font-size: 36px; margin-bottom: 10px; }
+.type-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.type-card p {
+  color: #666;
+  font-size: 13px;
+  line-height: 1.5;
+  flex: 1;
+  margin-bottom: 14px;
+}
+.type-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid #f0f0f5;
+}
+
+/* Documents récents */
+.recent-docs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+.doc-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+  transition: transform .2s;
+  border: 1px solid #eee;
+}
+.doc-card:hover { transform: translateY(-2px); }
+.doc-thumb {
+  height: 100px;
+  background: #eef2fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.doc-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.doc-icon { font-size: 40px; }
+.doc-body { padding: 12px; }
+.doc-type {
+  font-size: 11px;
+  color: #6c5ce7;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+.doc-body h4 {
+  font-size: 15px;
+  margin: 4px 0 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.doc-actions { display: flex; gap: 6px; margin-top: 10px; }
+.doc-actions .btn {
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.empty { text-align: center; padding: 60px 20px; color: #888; font-size: 15px; }
+
+
+/* ============================================================
+   13. GALERIE DE MODÈLES
+   ============================================================ */
+.gallery-title { font-size: 18px; font-weight: 700; }
+.gallery-main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px 20px 60px;
+}
+.gallery-sub { text-align: center; color: #777; margin-bottom: 30px; }
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+.card {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,.07);
+  transition: transform .2s, box-shadow .2s;
+  display: flex;
+  flex-direction: column;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.12);
+}
+
+/* Mini aperçu des cartes */
+.preview {
+  aspect-ratio: 3 / 4;
+  background: #f0f2f5;
+  padding: 20px;
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid #eee;
+}
+.pv-sidebar { width: 30%; background: #4f8cff; border-radius: 4px; }
+.pv-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px;
+}
+.pv-content.centered { align-items: center; }
+.pv-title {
+  height: 14px;
+  background: #333;
+  border-radius: 3px;
+  width: 60%;
+  margin-bottom: 6px;
+}
+.pv-title.centered { margin-left: auto; margin-right: auto; }
+.pv-title.big { height: 22px; width: 80%; background: #6c5ce7; }
+.pv-sub {
+  height: 8px;
+  background: #6c5ce7;
+  border-radius: 3px;
+  width: 40%;
+  margin-top: 8px;
+}
+.pv-line { height: 6px; background: #ccc; border-radius: 3px; width: 100%; }
+.pv-line.short { width: 60%; }
+
+.card-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+.card-body h2 { font-size: 18px; }
+.card-body p { color: #666; font-size: 14px; flex: 1; }
+
+
+/* ============================================================
+   14. ÉDITEUR (page)
+   ============================================================ */
+.editor-page { background: #e8ebf2; }
+
+.editor-layout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 20px;
+  padding: 20px;
+  align-items: start;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.form-panel {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  position: sticky;
+  top: 80px;
+}
+.form-panel h2 { margin-bottom: 15px; font-size: 16px; }
+.form-panel fieldset { border: none; margin-bottom: 18px; }
+.form-panel legend {
+  font-size: 13px;
+  font-weight: 600;
+  color: #6c5ce7;
+  margin-bottom: 8px;
+}
+.form-panel input,
+.form-panel textarea,
+.form-panel select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 13px;
+  margin-bottom: 8px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+.form-panel input:focus,
+.form-panel textarea:focus {
+  outline: none;
+  border-color: #6c5ce7;
+}
+
+.preview-panel {
+  overflow-x: auto;
+  padding-bottom: 40px;
+}
+
+
+/* ============================================================
+   15. UPLOAD PHOTO
+   ============================================================ */
+.photo-upload { display: flex; align-items: center; gap: 15px; }
+.photo-preview {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #eef2fa;
+  border: 2px dashed #c7d4eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #4f8cff;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.photo-preview.has-image { border-style: solid; border-color: #4f8cff; }
+.photo-preview img { width: 100%; height: 100%; object-fit: cover; }
+#photo-input { font-size: 12px; }
+
+
+/* ============================================================
+   16. ARTICLES (facture) — formulaire dynamique
+   ============================================================ */
+#articles-list { margin-bottom: 10px; }
+
+.article-row {
+  display: grid;
+  grid-template-columns: 1fr 60px 80px 80px 32px;
+  gap: 5px;
+  margin-bottom: 8px;
+  align-items: center;
+}
+.article-row input {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 13px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 0;
+}
+.article-row input:focus { outline: none; border-color: #6c5ce7; }
+
+.article-row .a-total {
+  font-size: 11px;
+  font-weight: 600;
+  color: #6c5ce7;
+  text-align: right;
+  padding-right: 4px;
+}
+.article-row .a-del {
+  background: #ffe3e3;
+  border: none;
+  border-radius: 6px;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1;
+}
+.article-row .a-del:hover { background: #ffcaca; }
+
+.btn-add-article {
+  width: 100%;
+  padding: 10px;
+  background: #f5f3ff;
+  color: #6c5ce7;
+  border: 1.5px dashed #c7bfff;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 6px;
+}
+.btn-add-article:hover { background: #ede8ff; }
+
+
+/* ============================================================
+   17. RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .header-nav { display: none; }
+  .hero h1 { font-size: 36px; }
+  .section-title { font-size: 28px; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .editor-layout { grid-template-columns: 1fr; }
+  .form-panel {
+    position: static;
+    max-height: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-inner { grid-template-columns: 1fr; }
+  .hero { padding: 50px 20px 60px; }
+  .section { padding: 50px 20px; }
+  .cta-final h2 { font-size: 24px; }
+}
+
+/* ============================================================
+   17. RESPONSIVE — TABLETTES & MOBILES
+   ============================================================ */
+
+/* ========== TABLETTES (≤ 900px) ========== */
+@media (max-width: 900px) {
+  .header-nav { display: none; }
+
+  .hero { padding: 60px 20px 70px; }
+  .hero h1 { font-size: 36px; letter-spacing: -1px; }
+  .hero-sub { font-size: 16px; }
+
+  .section { padding: 60px 20px; }
+  .section-title { font-size: 28px; }
+
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+  /* Éditeur : formulaire au-dessus, aperçu en dessous */
+  .editor-layout {
+    grid-template-columns: 1fr;
+    padding: 12px;
+    gap: 12px;
+  }
+  .form-panel {
+    position: static;
+    max-height: none;
+    padding: 16px;
+  }
+  .preview-panel {
+    padding: 8px;
+  }
+
+  /* Le CV A4 dans l'aperçu : on réduit pour qu'il rentre */
+  .preview-panel .cv {
+    transform: scale(0.85);
+    transform-origin: top left;
+  }
+}
+
+
+/* ========== MOBILES (≤ 600px) ========== */
+@media (max-width: 600px) {
+
+  /* ---------- Base ---------- */
+  body { font-size: 15px; }
+
+  /* ---------- Header ---------- */
+  .header-inner {
+    padding: 12px 16px;
+    gap: 12px;
+  }
+  .brand { font-size: 16px; }
+  .brand-logo { height: 30px; }
+
+  .header-actions {
+    gap: 6px;
+  }
+  .header-actions .btn,
+  .header-actions .btn-ghost {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 50px 16px 60px; }
+  .hero h1 { font-size: 28px; letter-spacing: -0.5px; }
+  .hero-sub { font-size: 15px; margin-bottom: 24px; }
+  .hero-cta { flex-direction: column; align-items: stretch; }
+  .hero-cta .btn,
+  .hero-cta .btn-ghost {
+    width: 100%;
+    padding: 14px 20px;
+  }
+  .hero-note { font-size: 12px; }
+
+  /* ---------- Sections ---------- */
+  .section { padding: 50px 16px; }
+  .section-title { font-size: 24px; }
+  .section-sub { font-size: 14px; margin-bottom: 30px; }
+
+  /* ---------- Services ---------- */
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .service-card { padding: 20px; }
+  .service-icon { font-size: 32px; }
+  .service-card h3 { font-size: 16px; }
+
+  /* ---------- Étapes ---------- */
+  .steps { grid-template-columns: 1fr; gap: 20px; }
+  .step { padding: 14px; }
+  .step-num { width: 48px; height: 48px; font-size: 20px; }
+
+  /* ---------- Pourquoi nous ---------- */
+  .why-grid { grid-template-columns: 1fr; gap: 16px; }
+  .why-item { padding: 16px; }
+  .why-icon { font-size: 30px; }
+
+  /* ---------- CTA final ---------- */
+  .cta-final { padding: 60px 16px; }
+  .cta-final h2 { font-size: 22px; }
+  .cta-final p { font-size: 14px; }
+  .cta-final .btn { width: 100%; }
+
+  /* ---------- Footer ---------- */
+  .site-footer { padding: 40px 16px 20px; }
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-bottom: 24px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  /* ---------- Auth ---------- */
+  .auth-card {
+    padding: 28px 22px;
+    border-radius: 14px;
+    margin: 16px;
+  }
+  .auth-card h1 { font-size: 22px; }
+  .auth-card input { font-size: 16px; /* ⚠️ 16px évite le zoom auto sur Android */ }
+
+  /* ---------- Dashboard ---------- */
+  .topbar {
+    flex-wrap: wrap;
+    padding: 10px 14px;
+    gap: 8px;
+  }
+  .topbar .brand { font-size: 15px; }
+  .topbar .brand img { height: 26px; }
+  .topbar .user-area { gap: 6px; }
+  .topbar .user-email {
+    font-size: 11px;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .topbar .btn-ghost { padding: 6px 10px; font-size: 12px; }
+
+  .dashboard-main { padding: 20px 14px; }
+  .dashboard-welcome h1 { font-size: 24px; }
+  .dashboard-welcome p { font-size: 14px; }
+
+  .dashboard-section { margin-bottom: 32px; }
+  .dashboard-section-title { font-size: 17px; margin-bottom: 14px; }
+
+  .types-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .type-card { padding: 18px; }
+  .type-icon { font-size: 30px; }
+
+  .recent-docs {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .doc-thumb { height: 80px; }
+  .doc-icon { font-size: 30px; }
+  .doc-body { padding: 10px; }
+  .doc-body h4 { font-size: 13px; }
+  .doc-actions { flex-direction: column; gap: 4px; }
+  .doc-actions .btn { padding: 6px; font-size: 11px; }
+  .doc-actions .btn-delete { padding: 6px; font-size: 12px; }
+
+  /* ---------- Galerie modèles ---------- */
+  .gallery-main { padding: 20px 14px 40px; }
+  .gallery-title { font-size: 16px; }
+  .gallery-sub { font-size: 13px; }
+
+  .gallery,
+  .templates-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .card-body { padding: 14px; }
+  .card-body h2 { font-size: 16px; }
+
+  /* ---------- ÉDITEUR ---------- */
+  .editor-layout {
+    grid-template-columns: 1fr;
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .form-panel {
+    padding: 14px;
+    border-radius: 10px;
+    max-height: none;
+    position: static;
+  }
+  .form-panel legend { font-size: 12px; }
+  .form-panel input,
+  .form-panel textarea,
+  .form-panel select {
+    padding: 10px 12px;
+    font-size: 16px; /* ⚠️ 16px = pas de zoom automatique sur Android */
+  }
+
+  /* Le CV dans l'aperçu : réduit à 50% pour bien rentrer */
+  .preview-panel {
+    padding: 4px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* scroll fluide iOS/Android */
+  }
+  .preview-panel .cv {
+    transform: scale(0.55);
+    transform-origin: top left;
+    margin-bottom: -45%; /* compense l'espace vide laissé par le scale */
+  }
+
+  /* ---------- Articles (facture) — layout vertical ---------- */
+  .article-row {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "desig desig"
+      "qte   pu"
+      "total del";
+    gap: 6px;
+    padding: 10px;
+    background: #f8f9fb;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  .article-row .a-desig { grid-area: desig; }
+  .article-row .a-qte   { grid-area: qte; }
+  .article-row .a-pu    { grid-area: pu; }
+  .article-row .a-total {
+    grid-area: total;
+    text-align: left;
+    font-size: 13px;
+    padding: 8px 0;
+  }
+  .article-row .a-del {
+    grid-area: del;
+    justify-self: end;
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+  .article-row input {
+    font-size: 16px;
+  }
+
+  .btn-add-article {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  /* ---------- Upload photo ---------- */
+  .photo-upload {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .photo-preview {
+    width: 90px;
+    height: 90px;
+    font-size: 32px;
+  }
+}
+
+
+/* ========== TRÈS PETITS ÉCRANS (≤ 380px) ========== */
+@media (max-width: 380px) {
+  .hero h1 { font-size: 24px; }
+  .section-title { font-size: 20px; }
+  .recent-docs { grid-template-columns: 1fr; }
+  .brand-name { display: none; }  /* Cache le nom, garde juste le logo */
+  .brand-name-fallback { display: inline !important; }
+}
+
+
+/* ========== MODE PAYSAGE MOBILE (hauteur réduite) ========== */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero { padding: 30px 20px 40px; }
+  .hero h1 { font-size: 24px; }
+}
+
+
+/* ========== TACTILE — Améliorer les zones cliquables ========== */
+@media (hover: none) and (pointer: coarse) {
+  /* Sur mobile, le :hover ne doit pas "coller" */
+  .service-card:hover,
+  .type-card:hover,
+  .card:hover,
+  .doc-card:hover,
+  .template-card:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: #eee;
+  }
+
+  /* Zones tactiles minimum 44px (recommandation Apple/Google) */
+  .btn,
+  .btn-ghost,
+  .btn-mini {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

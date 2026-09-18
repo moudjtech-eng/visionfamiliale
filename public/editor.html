@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Éditeur — VisionFamiliale</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="templates.css">
+
+  <!-- Bibliothèques externes AVANT tout le reste -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://cdn.kkiapay.me/k.js"></script>
+</head>
+<body class="editor-page">
+
+  <header class="topbar">
+  <a href="/dashboard.html" class="back">← Retour</a>
+  <span id="cv-title-label">Chargement…</span>
+  <div class="user-area">
+    <button id="save-btn" class="btn-ghost">💾</button>
+    <button id="pay-and-download-btn" class="btn">💳 Payer</button>
+  </div>
+</header>
+
+  <div class="editor-layout">
+    <aside class="form-panel">
+      <fieldset>
+        <legend>Titre du document</legend>
+        <input type="text" id="cv-title" placeholder="Ex: Mon document">
+      </fieldset>
+      <div id="dynamic-fields"></div>
+    </aside>
+
+    <main class="preview-panel">
+      <div id="cv-preview" class="cv"></div>
+    </main>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="documents-schema.js"></script>
+  <script src="editor.js"></script>
+</body>
+</html>

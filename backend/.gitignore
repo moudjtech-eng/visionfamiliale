@@ -1,0 +1,28 @@
+# --- Dépendances ---
+node_modules/
+package-lock.json
+
+# --- Secrets (NE JAMAIS COMMITER !) ---
+.env
+.env.local
+.env.*.local
+
+# --- Base de données locale ---
+*.db
+*.sqlite
+database.db
+
+# --- Uploads utilisateur ---
+backend/uploads/
+
+# --- Logs ---
+*.log
+npm-debug.log*
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+
+# --- IDE ---
+.vscode/
+.idea/

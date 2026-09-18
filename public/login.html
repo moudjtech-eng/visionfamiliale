@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+  <div class="auth-card">
+    <h1>🔐 Connexion</h1>
+
+    <form id="login-form">
+      <input type="email"    id="email"    placeholder="Email" required>
+      <input type="password" id="password" placeholder="Mot de passe" required>
+      <button type="submit" class="btn">Se connecter</button>
+    </form>
+
+    <p class="error" id="error"></p>
+
+    <p class="switch">
+      Pas de compte ? <a href="/register.html">Créer un compte</a>
+    </p>
+  </div>
+
+  <script src="auth.js"></script>
+<script>
+  redirectIfLoggedIn();
+
+  document.getElementById("login-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const errorEl = document.getElementById("error");
+    errorEl.textContent = "";
+
+    const res = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await res.json();
+
+    if (!res.ok) {
+      // Cas spécial : compte non vérifié → on redirige vers verify.html
+      if (data.needsVerify) {
+        localStorage.setItem("pending_email", data.email);
+        alert("Ton compte n'est pas encore vérifié. Entre le code reçu par email.");
+        location.href = "/verify.html";
+        return;
+      }
+      errorEl.textContent = "❌ " + data.error;
+      return;
+    }
+
+    setToken(data.token);
+    location.href = "/dashboard.html";
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon tableau de bord — VisionFamiliale</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-page">
+
+  <header class="topbar">
+    <a href="/" class="brand">
+      <img src="logo.png" alt="" class="brand-logo"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+      <span class="brand-name-fallback" style="display:none;">🏠</span>
+      <strong>VisionFamiliale</strong>
+    </a>
+    <div class="user-area">
+      <span id="user-email" class="user-email"></span>
+      <button id="logout-btn" class="btn-ghost">Déconnexion</button>
+    </div>
+  </header>
+
+  <main class="dashboard-main">
+    <div class="dashboard-welcome">
+      <h1>Bonjour 👋</h1>
+      <p>Que veux-tu créer aujourd'hui ?</p>
+    </div>
+
+    <!-- Mes documents récents -->
+    <section class="dashboard-section">
+      <h2 class="dashboard-section-title">📁 Mes documents récents</h2>
+      <div id="recent-docs" class="recent-docs"></div>
+      <p id="empty-recent" class="empty hidden">Tu n'as encore créé aucun document.</p>
+    </section>
+
+    <!-- Types de documents -->
+    <section class="dashboard-section">
+      <h2 class="dashboard-section-title">✨ Créer un nouveau document</h2>
+      <div id="types-grid" class="types-grid"></div>
+    </section>
+  </main>
+
+  <script src="auth.js"></script>
+  <script src="documents-schema.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vérifie ton email</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+  <div class="auth-card">
+    <h1>📧 Vérifie ton email</h1>
+    <p class="muted">
+      On t'a envoyé un code à 6 chiffres à<br>
+      <strong id="email-display"></strong>
+    </p>
+
+    <form id="verify-form">
+      <input type="text" id="code" placeholder="Code à 6 chiffres"
+             maxlength="6" inputmode="numeric" required
+             style="text-align:center; font-size: 22px; letter-spacing: 8px;">
+      <button type="submit" class="btn">Vérifier</button>
+    </form>
+
+    <p class="error" id="error"></p>
+
+    <p class="switch">
+      Pas reçu ?
+      <a href="#" id="resend">Renvoyer le code</a>
+    </p>
+  </div>
+
+  <script src="auth.js"></script>
+  <script>
+    const email = localStorage.getItem("pending_email");
+    if (!email) location.href = "/register.html";
+    document.getElementById("email-display").textContent = email;
+
+    document.getElementById("verify-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const code = document.getElementById("code").value.trim();
+      const errorEl = document.getElementById("error");
+      errorEl.textContent = "";
+
+      const res = await fetch("/api/auth/verify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, code })
+      });
+      const data = await res.json();
+
+      if (!res.ok) { errorEl.textContent = "❌ " + data.error; return; }
+
+      setToken(data.token);
+      localStorage.removeItem("pending_email");
+      location.href = "/dashboard.html";
+    });
+
+    document.getElementById("resend").addEventListener("click", async (e) => {
+      e.preventDefault();
+      await fetch("/api/auth/resend-otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+      });
+      alert("Nouveau code envoyé !");
+    });
+  </script>
+</body>
+</html>
